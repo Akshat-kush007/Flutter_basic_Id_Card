@@ -4,8 +4,16 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  
+  int stage=0;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +28,17 @@ class MyApp extends StatelessWidget {
           centerTitle: true,
           elevation: 0.0,
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: (() {
+            setState(() {
+              stage +=1;
+            });
+          }),
+          backgroundColor: Colors.grey[800],
+          hoverColor: Colors.grey[650],
+          
+          child: Icon(Icons.add),
+          ),
         body: Padding(
           padding: EdgeInsets.fromLTRB(30.0, 50.0, 30.0, 50.0),
           child: Column(
@@ -67,7 +86,7 @@ class MyApp extends StatelessWidget {
                 height: 4.0,
               ),
               Text(
-                '101',
+                '$stage',
                 style: TextStyle(
                     fontSize: 30,
                     color: Colors.yellow[600],
